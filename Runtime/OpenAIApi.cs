@@ -344,8 +344,8 @@ namespace OpenAI
         ///     Creates an embedding vector representing the input text.
         /// </summary>
         /// <param name="request">See <see cref="CreateEmbeddingsRequest"/></param>
-        /// <returns>See <see cref="LoadingAnimation"/></returns>
-        public async Task<LoadingAnimation> CreateEmbeddings(CreateEmbeddingsRequest request)
+        /// <returns>See <see cref="CreateEmbeddingsResponse"/></returns>
+        public async Task<CreateEmbeddingsResponse> CreateEmbeddings(CreateEmbeddingsRequest request)
         {
             // Handle case where not string or string[]
             if (!(request.Input is string) && !(request.Input is string[]))
@@ -355,7 +355,7 @@ namespace OpenAI
 
             var path = $"{BASE_PATH}/embeddings";
             var payload = CreatePayload(request);
-            return await DispatchRequest<LoadingAnimation>(path, UnityWebRequest.kHttpVerbPOST, payload);
+            return await DispatchRequest<CreateEmbeddingsResponse>(path, UnityWebRequest.kHttpVerbPOST, payload);
         }
 
         /// <summary>
